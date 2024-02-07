@@ -1,12 +1,8 @@
 .container, .de .iz{
     background-color: #4c504e;
     display: flex;
-   
-    
-  /*   align-content: center; */
     gap: 1rem;
 }
-
 @media(max-width:990px){
     .container, .de .iz{
        font-size: small;
@@ -14,22 +10,13 @@
        
     }
 }
-
 @media(max-width:650px){
     .container, .de .iz{
         background-color: aqua;
         align-self: center;
         width: auto;
-       
     }
 }
-
 .de{
     margin: 0 auto;
 }
-
-
-
-
-
-

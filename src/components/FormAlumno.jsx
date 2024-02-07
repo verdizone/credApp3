@@ -1,23 +1,104 @@
-import React from 'react'
+
+import { useState } from 'react'
+
 import './FormAlumno.css'
+import Error from './Error';
 
 const FormAlumno = () => {
+
+    const [nombre, setNombre] = useState('');
+    const [matricula, setMatricula] = useState('');
+    const [fechaNac, setFechaNac] = useState('')
+    const [colegio, setColegio] = useState('')
+    const [graGru, setGraGru] = useState('')
+    const [foto, setFoto] = useState('')
+    const [error, setError] = useState(false)
+
+
+    const onNombre = (e) =>{
+        setNombre(e.target.value);
+        console.log(nombre);
+    }
+    const onMatricula = (e) =>{
+        setMatricula(parseInt(e.target.value));
+        console.log(matricula);
+    }
+    const onFechaNac = (e) =>{
+        setFechaNac(e.target.value);
+        console.log(fechaNac);
+    }
+    const onColegio = (e) =>{
+        setColegio(e.target.value);
+        console.log(colegio);
+    }
+    const onGraGru = (e) =>{
+        setGraGru(e.target.value);
+        console.log(graGru);
+    }
+    const onFoto = (e) =>{
+        setFoto(e.target.value);
+        console.log(foto);
+    }
+    const onSubmit = (e) =>{
+        e.preventDefault()
+
+
+        //Comprobar si tenemos los datos suficiantes para continuar
+        if([nombre, matricula, fechaNac, colegio, graGru, foto].includes('')){
+            console.log('No puedes dejar campos vacíos');
+            setError(true)
+            return
+        }
+        setError(false)
+        
+    
+
+        //TODO Almacenar los datos para luego usarlos
+
+
+        // Resetear los datos de cada elemento guardado
+
+       /*  setNombre('')
+        setMatricula('')
+        setFechaNac('')
+        setColegio('')
+        setGraGru('')
+        setFoto('') */
+    }
+    
   return (
     <div>
-        <form className='formulario'>
-        
+        <form 
+            className='formulario'
+            onSubmit={onSubmit}
+        >
     <h3 className='header'>Ingresa los datos del Alumno</h3> 
+    {
+        error && <Error />
+    }  
           <hr />
             <div>
                 <label htmlFor="nombre">Nombre del Alumno</label>
                 <br />
-                <input id="nombre" type="text" placeholder='Ej. Juan Pérez' />
+                <input 
+                    id="nombre" 
+                    type="text" 
+                    placeholder='Ej. Juan Pérez'
+                    onChange={onNombre} 
+                    value={nombre}
+                />
             </div>
             <br />
             <div>
                 <label htmlFor="matricula">Matrícula del Alumno</label>
                 <br />
-                <input id="matricula" type="number" placeholder='1058' />
+                <input 
+                    id="matricula" 
+                    type="number" 
+                    placeholder='1058'
+                    onChange={onMatricula}
+                    value={matricula}
+                />
             </div>
             <br />
             
@@ -26,14 +107,24 @@ const FormAlumno = () => {
                       
                 <label htmlFor="fechaNac">Fecha de Nacimiento</label>
                 <br />
-                <input id="fechaNac" type="date"/>
+                <input 
+                    id="fechaNac" 
+                    type="date"
+                    onChange={onFechaNac} 
+                    value={fechaNac}     
+                />
             </div>
             <br />
 
             <div>
                  <label htmlFor="colegio">Colegio</label>  
                  <br /> 
-                   <select name="colegio" id="colegio">
+                   <select 
+                        name="colegio" 
+                        id="colegio"
+                        onChange={onColegio} 
+                        value={colegio}  
+                    >
                     <option value="" >---Elegir---</option>
                     <option value="Albatros">Albatros</option>
                     <option value="Tecnoalbatros">Tecnoalbatros</option>
@@ -44,7 +135,12 @@ const FormAlumno = () => {
             <div>
                 <label htmlFor="graGru">Grado y Grupo</label>
                 <br />
-                <select name="graGru" id="graGru">
+                <select 
+                    name="graGru" 
+                    id="graGru"
+                    onChange={onGraGru} 
+                    value={graGru} 
+                >
                     <option value="" >---Elegir---</option>
                     <option value="" disabled>---Preescolar---</option>
                     <option value="K1A">K1A</option>
@@ -94,13 +190,21 @@ const FormAlumno = () => {
             <div>
                 <label htmlFor="foto">Fotografía</label>
                 <br />
-                <input className="archivo" id="foto" type="file"/>
+                <input 
+                    className="archivo" 
+                    id="foto" 
+                    type="file"
+                    onChange={onFoto}  
+                    value={foto}
+                />
             </div>
             
             <br />
             
             <div>
-                <input className='boton' type="button" value="Ingresar Alumno" />
+                <button className='boton'>
+                    Ingresar Alumno
+                </button>
             </div>
         </form>
 

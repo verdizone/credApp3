@@ -3,8 +3,7 @@ import './Tarjeta.css'
 const Tarjeta = () => {
   return (
     <>
-
-    <div className='formato-tarjeta'>
+      <div className='formato-tarjeta'>
 
         <p>Nombre del alumno: </p>
         <p>Matrícula: </p>
@@ -12,7 +11,7 @@ const Tarjeta = () => {
         <p>Colegio: </p>
         <p>Grado y grupo: </p>
         <p>Fotografía: </p>
-    </div>
+      </div>
     </>
   )
 }

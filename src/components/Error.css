@@ -1,0 +1,21 @@
+.error{
+    font-size: larger;
+    background-color: #5a0c0c;
+    color: white;
+    
+    padding: 1rem 1rem;
+    border: #6b0e0e solid 1px;
+    border-radius: 10px;
+
+    text-transform: uppercase;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 200;
+    min-width: 300px;
+    margin-top: .1rem;
+    margin-bottom: .5rem;
+
+}
