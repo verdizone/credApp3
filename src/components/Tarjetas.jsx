@@ -1,7 +1,8 @@
 import Tarjeta from './Tarjeta'
 import './Tarjetas.css'
 
-const Tarjetas = () => {
+const Tarjetas = ({alumnos}) => {
+
   return (
     <>
     <div className='container'>
@@ -9,13 +10,13 @@ const Tarjetas = () => {
       
     </div>
     <div className='tarjeta'>
-       <Tarjeta />
-       <Tarjeta />
-       <Tarjeta />
-       <Tarjeta />
-       <Tarjeta />
-       <Tarjeta />
-       <Tarjeta />
+        {
+          alumnos.map(alumno=>(
+           <Tarjeta
+              alumno={alumno}
+           />
+          ))
+        }
     </div>
     </>
   )

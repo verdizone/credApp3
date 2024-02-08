@@ -1,10 +1,8 @@
-
 import { useState } from 'react'
-
 import './FormAlumno.css'
 import Error from './Error';
 
-const FormAlumno = () => {
+const FormAlumno = ({setAlumnos, alumnos}) => {
 
     const [nombre, setNombre] = useState('');
     const [matricula, setMatricula] = useState('');
@@ -14,50 +12,53 @@ const FormAlumno = () => {
     const [foto, setFoto] = useState('')
     const [error, setError] = useState(false)
 
-
     const onNombre = (e) =>{
         setNombre(e.target.value);
-        console.log(nombre);
+       /*  console.log(nombre); */
     }
     const onMatricula = (e) =>{
         setMatricula(parseInt(e.target.value));
-        console.log(matricula);
+        /* console.log(matricula); */
     }
     const onFechaNac = (e) =>{
         setFechaNac(e.target.value);
-        console.log(fechaNac);
+        /* console.log(fechaNac); */
     }
     const onColegio = (e) =>{
         setColegio(e.target.value);
-        console.log(colegio);
+        /* console.log(colegio); */
     }
     const onGraGru = (e) =>{
         setGraGru(e.target.value);
-        console.log(graGru);
+        /* console.log(graGru); */
     }
     const onFoto = (e) =>{
         setFoto(e.target.value);
-        console.log(foto);
+        /* console.log(foto); */
     }
     const onSubmit = (e) =>{
         e.preventDefault()
-
-
         //Comprobar si tenemos los datos suficiantes para continuar
         if([nombre, matricula, fechaNac, colegio, graGru, foto].includes('')){
-            console.log('No puedes dejar campos vacíos');
+            //console.log('No puedes dejar campos vacíos');
             setError(true)
             return
         }
         setError(false)
-        
-    
 
+        const objetoAlumnos = {
+            nombre, 
+            matricula, 
+            fechaNac, 
+            colegio, 
+            graGru, 
+            foto
+        }
+
+        /* console.log(objetoAlumnos); */
+        setAlumnos([objetoAlumnos, ...alumnos]);
         //TODO Almacenar los datos para luego usarlos
-
-
         // Resetear los datos de cada elemento guardado
-
        /*  setNombre('')
         setMatricula('')
         setFechaNac('')

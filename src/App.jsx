@@ -1,17 +1,23 @@
+import { useState } from "react";
 import FormAlumno from "./components/FormAlumno";
-import Tarjeta from "./components/Tarjetas";
+import Tarjetas from "./components/Tarjetas";
 import './App.css'
 
 const App = () => {
-  
+    const [alumnos, setAlumnos] = useState([])
   return (
     <>
       <div className="container">
         <div className="iz">
-          <FormAlumno />
+          <FormAlumno 
+            alumnos={alumnos}
+            setAlumnos={setAlumnos}
+          />
         </div>
         <div className="de">
-          <Tarjeta />
+          <Tarjetas 
+            alumnos={alumnos}
+          />
         </div>
       </div>
     </>
