@@ -1,8 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './FormAlumno.css'
 import Error from './Error';
+import {generarId} from '../assets/helpers';
 
-const FormAlumno = ({setAlumnos, alumnos}) => {
+const FormAlumno = ({setAlumnos, alumnos, setAlumno, alumno }) => {
+
+    useEffect(()=>{
+        if(Object.keys(alumno).length > 0){
+            setNombre(alumno.nombre)
+            setMatricula(alumno.matricula)
+            setFechaNac(alumno.fechaNac)
+            setColegio(alumno.colegio)
+            setGraGru(alumno.graGru)
+            //TODO falta la foto error
+            console.log(alumno.foto);
+        }
+        
+    },[alumno])
 
     const [nombre, setNombre] = useState('');
     const [matricula, setMatricula] = useState('');
@@ -11,7 +25,7 @@ const FormAlumno = ({setAlumnos, alumnos}) => {
     const [graGru, setGraGru] = useState('')
     const [foto, setFoto] = useState('')
     const [error, setError] = useState(false)
-
+    
     const onNombre = (e) =>{
         setNombre(e.target.value);
        /*  console.log(nombre); */
@@ -54,17 +68,34 @@ const FormAlumno = ({setAlumnos, alumnos}) => {
             graGru, 
             foto
         }
+        if(alumno.id){
+            //Editando alumnos...
+            objetoAlumnos.id = alumno.id;
+
+            const alumnosActualizados = alumnos.map(alumnoState=>(
+                alumnoState.id === alumno.id ? objetoAlumnos : alumnoState
+            ))
+
+            setAlumnos(alumnosActualizados)
+            setAlumno({})
+
+        }else{  
+            //Nuevo alumno
+            objetoAlumnos.id = generarId(),
+            setAlumnos([objetoAlumnos, ...alumnos]);
+
+        }
 
         /* console.log(objetoAlumnos); */
-        setAlumnos([objetoAlumnos, ...alumnos]);
+        
         //TODO Almacenar los datos para luego usarlos
         // Resetear los datos de cada elemento guardado
-       /*  setNombre('')
+        setNombre('')
         setMatricula('')
         setFechaNac('')
         setColegio('')
         setGraGru('')
-        setFoto('') */
+        setFoto('')
     }
     
   return (
@@ -204,7 +235,9 @@ const FormAlumno = ({setAlumnos, alumnos}) => {
             
             <div>
                 <button className='boton'>
-                    Ingresar Alumno
+                    {
+                        alumno.id ? 'Editar Alumno' : 'Insertar alumno'
+                    }
                 </button>
             </div>
         </form>
